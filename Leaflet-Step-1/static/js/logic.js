@@ -15,98 +15,92 @@ var myMap = L.map("map", {
 
   var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
-  // d3.json(url).then(function(data) {
-  //   console.log(data);
-  //     var feat = data.features
-  
-  //     var circlemarkers = []
-  //     for (var i = 0; i< feat.length; i++) {
-  //       var loc = feat[i].geometry;
-  //       var property = feat[i].properties;
-  //       console.log(loc) 
-
-  //       circlemarkers.push(
-  //         L.circleMarker([loc.coordinates[1], loc.coordinates[0]], {
-  //           fillOpacity:0.75,
-  //           color:"black",
-  //           weight: 1,
-  //           fillColor:"green",
-  //           radius: property.mag * 5
-  //         }).bindPopup("<h3>" + property.place +"<h3><hr><p>" + new Date(property.time) + "</p>").addTo(myMap));
-  //       }
-  // })
-
-
-
-d3.json(url).then(function(response){
-  createFeatures(response.features);
-});
-
-function createFeatures(data) {
-  function onEachFeature (feature,layer) {
-    var magnitude = feature.properties.mag
-    var depth = feature.geometry.coordinates[2]
-    var color = ""
-    if (depth >= 90) {
-      color = "#FF0D0D";
-    }
-    else if (depth < 90 && depth >=  70){
-      color = " #FF4E11";
-    }
-    else if (depth < 70 && depth >= 50) {
-      color = "#FF8E15";
-    }
-    else if (depth <50 && depth  >= 30){
-      color = "#FAB733";
-    }
-    else if (depth < 30 && depth >= 10) {
-      color = "#ACB334";
-    }
-    else {
-      color = "#69B34C";
-    }
-
-    
-
-
+  d3.json(url).then(function(data) {
+    console.log(data);
     var circlemarkers = []
-    circlemarkers.push(
-      L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
-        fillOpacity:0.75,
-        color:"black",
-        weight: 0.5,
-        fillColor:color,
-        radius: magnitude * 5
-      }).bindPopup("<h3>" + feature.properties.place +"<h3><hr><p>" + new Date(feature.properties.time) + "</p><hr><p> Magnitude: " + feature.properties.mag+"</p>").addTo(myMap));
+    for (var i = 0; i< data.features.length; i++) {
+      var feature = data.features[i];
+      var depth = feature.geometry.coordinates[2];
+      console.log(depth)
+      var mag = feature.properties.mag;
+      console.log(mag)
+      var latlng = feature.geometry.coordinates
+      var color = "";
+      if (depth >= 90) {
+        color = "#FF0D0D";
+      }
+      else if (depth < 90 && depth >=  70){
+        color = " #FF4E11";
+      }
+      else if (depth < 70 && depth >= 50) {
+        color = "#FF8E15";
+      }
+      else if (depth <50 && depth  >= 30){
+        color = "#FAB733";
+      }
+      else if (depth < 30 && depth >= 10) {
+        color = "#ACB334";
+      }
+      else {
+        color = "#69B34C";
+      }
+        circlemarkers.push(
+          L.circleMarker([latlng[1], latlng[0]], {
+            fillOpacity:0.75,
+            color:"black",
+            weight: 0.5,
+            fillColor:color,
+            radius: mag * 5
+          }).bindPopup("<h3>" + feature.properties.place +"<h3><hr><p>" + new Date(feature.properties.time) + "</p><hr><p> Magnitude: " 
+          + feature.properties.mag + " & Depth: " + depth+ "</p>").addTo(myMap));
+        }
+  })
 
-  }
+//   function colorscale(d) {
+//     return d > 90 ? "#FF0D0D" :
+//            d > 70  ? "#FF4E11" :
+//            d > 50  ? "#FF8E15" :
+//            d > 30  ? "#FAB733" :
+//            d > 10  ? "#ACB334" :
+//                       "#69B34C";
 
-  var earthquake = L.geoJSON(data, {
-    onEachFeature: onEachFeature
-  });
+//   }
+// var legend = L.control({position: "bottomright"});
 
+// legend.onAdd = function (myMap) {
+// var div = L.DomUtil.create("div", "info legend");
+//   grades = [-10, 10, 30, 50, 70, 90];
+//   labels = [];
+                      
+// // loop through our density intervals and generate a label with a colored square for each interval
+// for (var i = 0; i < grades.length; i++) {
+//   div.innerHTML +=
+//   '<i style="background:' + colorscale(grades[i]) + '"></i> ' +
+//   grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+//   }
+                      
+// return div;
+// };
+                      
+// legend.addTo(myMap);
 
+// var legend = L.control({position: "bottomright"});
+// legend.onAdd = function(){
+//   var div = L.DomUtil.create ("div", "info legend");
+ 
 
-
-//   var legend = L.control({position: "bottomright"});
-//   legend.onAdd = function(){
+//   var depths = [-10, 10, 30, 50, 70, 90];
 //   var colorscale = ["#69B34C","#ACB334","#FAB733","#FF8E15"," #FF4E11","#FF0D0D"];
-//   var div = L.DomUtil.create('div', 'info legend'),
-//       grades = [-10, 10, 30, 50, 70, 90],
-//       labels = [];
-
-//   for (var i = 0; i <grades.length; i++) {
-//     div.innterHTML +=
-//       '<i style="background:' + colorscale[i] + ' "></i>' +
-//       grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-
+//   var labels = []
+//   for (var i = 0; i <depths.length; i++) {
+//     div.innerHTML += 
+//   "<li style=\"background-color: " + colorscale[i]+ "\">" + depths[i] + (depths[i+1]  ? "&ndash;" + depths[i+1] + "<br>" : "+" + "</li>");
+//   //   //"<ul class =\"no-bullets\">" + "<li style=\"background-color: " + colorscale[i]+ "\"></li>" + depths[i] + (depths[i+1] ? "&ndash;" + depths[i+1] + "<br>" : "+" + "</ul>");
 //   }
 //   return div;
 // };
+// legend.addTo(myMap);}
 
-// legend.addTo(myMap);
-// }
-  
 var legend = L.control({position: "bottomright"});
 legend.onAdd = function(){
   var div = L.DomUtil.create ("div", "info legend");
@@ -117,14 +111,10 @@ legend.onAdd = function(){
 
   for (var i = 0; i <depths.length; i++) {
     div.innerHTML += 
-    "<li style=\"background-color: " + colorscale[i]+ "\">" + depths[i] + (depths[i+1] + "</li>" ? "&ndash;" + depths[i+1] + "<br>" : "+");
+    "<li style=\"background-color: " + colorscale[i]+ "\">" + depths[i] + (depths[i+1] ? "&ndash;" + depths[i+1] + "<br>" : "+" + "</li>");
     //"<ul class =\"no-bullets\">" + "<li style=\"background-color: " + colorscale[i]+ "\"></li>" + depths[i] + (depths[i+1] ? "&ndash;" + depths[i+1] + "<br>" : "+" + "</ul>");
   }
   return div;
 };
 legend.addTo(myMap);
-}
-
-
-
 
