@@ -1,4 +1,4 @@
-// Create a map object
+//Create a map object
 var myMap = L.map("map", {
     center: [37.09, -95.71],
     zoom: 5
@@ -66,6 +66,9 @@ function createFeatures(data) {
       color = "#69B34C";
     }
 
+    
+
+
     var circlemarkers = []
     circlemarkers.push(
       L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
@@ -81,23 +84,29 @@ function createFeatures(data) {
   var earthquake = L.geoJSON(data, {
     onEachFeature: onEachFeature
   });
-};
-  
-// var legend = L.control({position: "bottomright"});
-// legend.onAdd = function(){
-//   var div = L.DomUtil.create ("div", "info legend");
-//   var colorscale = ["#FF0D0D"," #FF4E11","#FF8E15","#FAB733","#ACB334","#69B34C"]
-//   var depths = [90,70,50,30,10,-10]
 
-//   depths.forEach(function(row,index){
-//     div.innerHTML +=
-//     "<li style=\"background-color: " + colorscale[index] + "\"></li>" + row;
-//     return div;
-//   });
-  
-//  legend.addTo(myMap);
+
+
+
+//   var legend = L.control({position: "bottomright"});
+//   legend.onAdd = function(){
+//   var colorscale = ["#69B34C","#ACB334","#FAB733","#FF8E15"," #FF4E11","#FF0D0D"];
+//   var div = L.DomUtil.create('div', 'info legend'),
+//       grades = [-10, 10, 30, 50, 70, 90],
+//       labels = [];
+
+//   for (var i = 0; i <grades.length; i++) {
+//     div.innterHTML +=
+//       '<i style="background:' + colorscale[i] + ' "></i>' +
+//       grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+
+//   }
+//   return div;
 // };
 
+// legend.addTo(myMap);
+// }
+  
 var legend = L.control({position: "bottomright"});
 legend.onAdd = function(){
   var div = L.DomUtil.create ("div", "info legend");
@@ -114,5 +123,8 @@ legend.onAdd = function(){
   return div;
 };
 legend.addTo(myMap);
+}
+
+
 
 
