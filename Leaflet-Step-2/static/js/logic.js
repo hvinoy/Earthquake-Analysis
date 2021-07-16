@@ -123,7 +123,7 @@ var earthquakes = L.layerGroup(circlemarkers);
   for (var i = 0; i <depths.length; i++) {
     div.innerHTML += 
     "<li style=\"background-color: " + colorscale[i]+ "\">" + depths[i] + (depths[i+1] ? "&ndash;" + depths[i+1] + "<br>" : "+" + "</li>");
-    //"<ul class =\"no-bullets\">" + "<li style=\"background-color: " + colorscale[i]+ "\"></li>" + depths[i] + (depths[i+1] ? "&ndash;" + depths[i+1] + "<br>" : "+" + "</ul>");
+
   }
   return div;
   };
