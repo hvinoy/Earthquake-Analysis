@@ -56,50 +56,6 @@ var myMap = L.map("map", {
         }
   })
 
-//   function colorscale(d) {
-//     return d > 90 ? "#FF0D0D" :
-//            d > 70  ? "#FF4E11" :
-//            d > 50  ? "#FF8E15" :
-//            d > 30  ? "#FAB733" :
-//            d > 10  ? "#ACB334" :
-//                       "#69B34C";
-
-//   }
-// var legend = L.control({position: "bottomright"});
-
-// legend.onAdd = function (myMap) {
-// var div = L.DomUtil.create("div", "info legend");
-//   grades = [-10, 10, 30, 50, 70, 90];
-//   labels = [];
-                      
-// // loop through our density intervals and generate a label with a colored square for each interval
-// for (var i = 0; i < grades.length; i++) {
-//   div.innerHTML +=
-//   '<i style="background:' + colorscale(grades[i]) + '"></i> ' +
-//   grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-//   }
-                      
-// return div;
-// };
-                      
-// legend.addTo(myMap);
-
-// var legend = L.control({position: "bottomright"});
-// legend.onAdd = function(){
-//   var div = L.DomUtil.create ("div", "info legend");
- 
-
-//   var depths = [-10, 10, 30, 50, 70, 90];
-//   var colorscale = ["#69B34C","#ACB334","#FAB733","#FF8E15"," #FF4E11","#FF0D0D"];
-//   var labels = []
-//   for (var i = 0; i <depths.length; i++) {
-//     div.innerHTML += 
-//   "<li style=\"background-color: " + colorscale[i]+ "\">" + depths[i] + (depths[i+1]  ? "&ndash;" + depths[i+1] + "<br>" : "+" + "</li>");
-//   //   //"<ul class =\"no-bullets\">" + "<li style=\"background-color: " + colorscale[i]+ "\"></li>" + depths[i] + (depths[i+1] ? "&ndash;" + depths[i+1] + "<br>" : "+" + "</ul>");
-//   }
-//   return div;
-// };
-// legend.addTo(myMap);}
 
 var legend = L.control({position: "bottomright"});
 legend.onAdd = function(){
