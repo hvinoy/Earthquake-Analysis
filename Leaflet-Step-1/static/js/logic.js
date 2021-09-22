@@ -1,3 +1,5 @@
+
+/////Leaflet 1
 //Create a map object
 var myMap = L.map("map", {
     center: [37.09, -95.71],
@@ -13,7 +15,7 @@ var myMap = L.map("map", {
     accessToken: API_KEY
   }).addTo(myMap);
 
-  var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
+  var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"  ////json link
 
   d3.json(url).then(function(data) {
     console.log(data);
