@@ -14,6 +14,8 @@ Included popups that provide additional information about the earthquake when a 
 
 
 Created a legend that will provide context for the map data.
+In addition, used JavaScript, HTML and CSS to create the webpage.
+Sample images from the webpage:
 
 ![image](https://user-images.githubusercontent.com/78995175/134270412-e88e663f-abca-4d74-b079-5eccb7eb6423.png)
 ![2-BasicMap](https://user-images.githubusercontent.com/78995175/134270047-5dd2db8e-8d2c-436a-9625-cbfb7a287334.png)
