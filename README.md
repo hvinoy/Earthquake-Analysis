@@ -5,7 +5,7 @@
 The USGS provides earthquake data in a number of different formats, updated every 5 minutes. Visited the USGS GeoJSON Feed page and picked a data set to visualize.
 ![image](https://user-images.githubusercontent.com/78995175/134270281-1d4cd3b8-84f6-4b8b-89ed-d9ac325d5619.png)
 
-Created a map using Leaflet that plots all of the earthquakes from your data set based on their longitude and latitude.
+Created maps using Leaflet that plots all of the earthquakes from your data set based on their longitude and latitude.
 
 
 Data markers reflects the magnitude of the earthquake by their size and and depth of the earth quake by color.
