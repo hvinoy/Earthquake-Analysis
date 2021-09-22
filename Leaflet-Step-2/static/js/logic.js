@@ -42,7 +42,7 @@ d3.json(url).then(function(data) {
         + feature.properties.mag + " & Depth: " + depth+ "</p>")
         );
       }
-
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 var earthquakes = L.layerGroup(circlemarkers);
 
